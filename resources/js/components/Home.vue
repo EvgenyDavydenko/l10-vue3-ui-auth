@@ -15,9 +15,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         mounted() {
-            console.log('Home Component mounted.')
+            axios.get('/api/hello').then(r => {
+                console.log(r);
+            }).catch(error => {
+                console.log(error.response.data.errors);
+            })
         }
     }
 </script>
