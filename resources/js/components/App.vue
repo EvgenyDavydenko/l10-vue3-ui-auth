@@ -9,12 +9,15 @@
             </router-link>
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                 <li>
-                    <router-link to="/login" class="nav-link text-white" style="text-decoration: none; color: white;">
+                    <router-link to="/login" class="nav-link text-white">
                         Войти
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/register" class="nav-link text-white" style="text-decoration: none; color: white;">
+                    <a @click.prevent="logout" class="nav-link text-white" href="#">Выйти</a>
+                </li>
+                <li>
+                    <router-link to="/register" class="nav-link text-white">
                         Регистрация
                     </router-link>
                 </li>
@@ -36,6 +39,15 @@
 
 <script>
     export default {
-    name: 'App'
+        name: 'App',
+        methods: {
+            logout() {
+                axios.post('/logout').then(res => {
+                    localStorage.removeItem('token');
+                    this.$router.push({name: 'login'});
+                })
+            }
+            
+        }
     }
 </script>

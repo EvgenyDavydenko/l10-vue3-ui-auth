@@ -6,7 +6,7 @@
                     <div class="card-header">Home Component</div>
 
                     <div class="card-body">
-                        I'm an Home component.
+                        Hello {{ user.name }}! Your email: {{ user.email }}.
                     </div>
                 </div>
             </div>
@@ -17,8 +17,18 @@
 <script>
     import axios from 'axios';
     export default {
+        data(){
+            return{
+                user: {
+                    name: '',
+                    email: ''
+                }
+            }
+        },
         mounted() {
-            axios.get('/api/hello').then(r => {
+            axios.get('/api/user').then(r => {
+                this.user.name = r.data.name;
+                this.user.email = r.data.email;
                 console.log(r);
             }).catch(error => {
                 console.log(error.response.data.errors);

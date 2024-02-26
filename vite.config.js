@@ -3,6 +3,14 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+    server: {
+        host: 'php82cli',
+        port: 5173,
+        hmr: {
+            host: 'localhost',
+            clientPort: 3000,
+        },
+    },
     plugins: [
         laravel({
             input: [
